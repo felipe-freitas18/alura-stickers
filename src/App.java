@@ -12,7 +12,7 @@ public class App {
 
 	public static void main(String[] args) throws Exception {
 		
-		//fazer uma conexão HTTP e buscar os top 250 filmes
+		//fazer uma conex�o HTTP e buscar os top 250 filmes
 		String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
 		URI endereco = URI.create(url);
 		var client =  HttpClient.newHttpClient();
@@ -20,7 +20,7 @@ public class App {
 		HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 		String body = response.body();
 		
-		//extrair só os dados que interessam (titulo, poster, classificação)
+		//extrair s�o os dados que interessam (titulo, poster, classifica��o)
 		var parser = new JsonParser();
 		List<Map<String, String>> listaDeFilmes = parser.parse(body);	
 		
@@ -35,7 +35,7 @@ public class App {
 			System.out.println("\u001b[35m"+titulo+"\u001b[m");
 			System.out.println(filme.get("image"));
 			System.out.println(filme.get("imDbRating"));
-			System.out.println("⭐⭐⭐⭐⭐");
+			//adicionar nessa linha posteriormente o sysout contendo os icons de estrelas
 			System.out.println();
 		}
 	}
