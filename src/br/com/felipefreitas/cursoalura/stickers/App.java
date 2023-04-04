@@ -5,7 +5,9 @@ import java.util.List;
 
 import br.com.felipefreitas.cursoalura.stickers.domain.Conteudo;
 import br.com.felipefreitas.cursoalura.stickers.resource.ClienteHttp;
+import br.com.felipefreitas.cursoalura.stickers.services.ExtratorDeConteudo;
 import br.com.felipefreitas.cursoalura.stickers.services.ExtratorDeConteudoDaNasa;
+import br.com.felipefreitas.cursoalura.stickers.services.ExtratorDeConteudoDoIMDB;
 import br.com.felipefreitas.cursoalura.stickers.services.GeradoraDeFigurinhas;
 
 public class App {
@@ -20,7 +22,7 @@ public class App {
 		String json = http.buscaDados(urlNasa);
 		
 		// exibir e manipular os dados
-		ExtratorDeConteudoDaNasa extrator = new ExtratorDeConteudoDaNasa();
+		ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
 		List<Conteudo> conteudos  = extrator.extraiConteudos(json);
 		
 		var geradora = new GeradoraDeFigurinhas();

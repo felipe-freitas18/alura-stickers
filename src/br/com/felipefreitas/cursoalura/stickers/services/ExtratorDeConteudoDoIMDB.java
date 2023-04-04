@@ -1,12 +1,12 @@
 package br.com.felipefreitas.cursoalura.stickers.services;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import br.com.felipefreitas.cursoalura.stickers.domain.Conteudo;
 import br.com.felipefreitas.cursoalura.stickers.utils.JsonParser;
 
-public class ExtratorDeConteudoDoIMDB implements ExtratorDeConteudo{
+public class ExtratorDeConteudoDoIMDB implements ExtratorDeConteudo {
 
 	public List<Conteudo> extraiConteudos(String json){
 		
@@ -14,15 +14,8 @@ public class ExtratorDeConteudoDoIMDB implements ExtratorDeConteudo{
 		var parser = new JsonParser();
 		List<Map<String, String>> listaDeAtributos = parser.parse(json);	
 		
-		List<Conteudo> conteudos = new ArrayList<>();
-		
-		//popular a lista de atributos
-		for (Map<String, String> atributos : listaDeAtributos) {
-			String titulo = atributos.get("title");
-			String urlImagem = atributos.get("image").replaceAll("(@+)(.*).jpg$", "$1.jpg");
-			conteudos.add(new Conteudo(titulo, urlImagem));
-		}
-		
-		return conteudos;
+		return listaDeAtributos.stream()
+				.map((atributo) -> new Conteudo(atributo.get("title"), atributo.get("image").replaceAll("(@+)(.*).jpg$", "$1.jpg")))
+				.collect(Collectors.toList());
 	}
 }
