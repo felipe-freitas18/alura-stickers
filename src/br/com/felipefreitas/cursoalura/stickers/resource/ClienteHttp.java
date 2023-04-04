@@ -6,6 +6,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import br.com.felipefreitas.cursoalura.stickers.resource.exceptions.ClienteHttpException;
+
 public class ClienteHttp {
 
 	public String buscaDados(String url) {
@@ -18,7 +20,7 @@ public class ClienteHttp {
 			response = client.send(request, BodyHandlers.ofString());
 			return response.body();
 		} catch (IOException | InterruptedException e) {
-			throw new RuntimeException(e);
+			throw new ClienteHttpException("Erro ao consultar a URL. :( ");
 		}
 	}
 }
