@@ -1,3 +1,4 @@
+package com.felipefreitas.cursoalura.stickers.domain;
 
 public class Conteudo {
 

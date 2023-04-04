@@ -1,6 +1,12 @@
+package com.felipefreitas.cursoalura.stickers;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
+
+import com.felipefreitas.cursoalura.stickers.domain.Conteudo;
+import com.felipefreitas.cursoalura.stickers.resource.ClienteHttp;
+import com.felipefreitas.cursoalura.stickers.services.ExtratorDeConteudoDaNasa;
+import com.felipefreitas.cursoalura.stickers.services.GeradoraDeFigurinhas;
 
 public class App {
 
