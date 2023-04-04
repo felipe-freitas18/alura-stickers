@@ -3,26 +3,26 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
+import com.felipefreitas.cursoalura.stickers.enums.API;
+
 import br.com.felipefreitas.cursoalura.stickers.domain.Conteudo;
 import br.com.felipefreitas.cursoalura.stickers.resource.ClienteHttp;
 import br.com.felipefreitas.cursoalura.stickers.services.ExtratorDeConteudo;
-import br.com.felipefreitas.cursoalura.stickers.services.ExtratorDeConteudoDaNasa;
-import br.com.felipefreitas.cursoalura.stickers.services.ExtratorDeConteudoDoIMDB;
 import br.com.felipefreitas.cursoalura.stickers.services.GeradoraDeFigurinhas;
 
 public class App {
 
 	public static void main(String[] args) throws Exception {
 		
-		//fazer uma conexão HTTP e buscar os top 250 filmes
-		String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
-		String urlNasa = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/NASA-APOD.json";
+		API api = API.NASA;
+		
+		String url = api.getUrl();
 		
 		ClienteHttp http = new ClienteHttp();
-		String json = http.buscaDados(urlNasa);
+		String json = http.buscaDados(url);
 		
 		// exibir e manipular os dados
-		ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
+		ExtratorDeConteudo extrator = api.getExtrator();
 		List<Conteudo> conteudos  = extrator.extraiConteudos(json);
 		
 		var geradora = new GeradoraDeFigurinhas();
