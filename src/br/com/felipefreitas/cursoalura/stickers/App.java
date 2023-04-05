@@ -14,7 +14,7 @@ public class App {
 
 	public static void main(String[] args) throws Exception {
 		
-		API api = API.NASA;
+		API api = API.LOCALHOST;
 		
 		String url = api.getUrl();
 		
